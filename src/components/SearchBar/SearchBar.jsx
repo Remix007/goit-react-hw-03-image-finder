@@ -9,7 +9,6 @@ class SearchBar extends Component {
   state = {
     imageName: '',
   };
-
   hendleNameChange = event => {
     this.setState({ imageName: event.currentTarget.value.toLowerCase() });
   };
@@ -21,6 +20,7 @@ class SearchBar extends Component {
       toast('Input image name');
       return;
     }
+
     this.props.onSubmit(this.state.imageName);
 
     this.setState({ imageName: '' });

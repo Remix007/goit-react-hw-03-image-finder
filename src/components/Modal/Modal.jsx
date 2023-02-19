@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import style from './Modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
+
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.hendleKeyDown);
@@ -11,6 +12,7 @@ class Modal extends Component {
   componentWillUnmount() {
     window.removeEventListener('keydown', this.hendleKeyDown);
   }
+
   hendleKeyDown = event => {
     if (event.code === 'Escape') {
       this.props.onClose();
@@ -21,6 +23,7 @@ class Modal extends Component {
       this.props.onClose();
     }
   };
+
   render() {
     return createPortal(
       <div className={style.overlay} onClick={this.hendleBackDropClick}>

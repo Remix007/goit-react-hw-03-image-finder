@@ -16,13 +16,17 @@ class Gallery extends Component {
     lageImage: '',
     status: 'idle',
   };
-
   componentDidUpdate(prevProps, prevState) {
     const prevImageName = prevProps.imageName;
     const nextImageName = this.props.imageName;
     const page = this.state.page;
+
     if (prevImageName !== nextImageName) {
+      // console.log('Change name of image');
+      // console.log('prevProps.imageName:', prevProps.imageName);
+      // console.log('this.props.imageName:', this.props.imageName);
       this.setState({ status: 'pending', page: 1 });
+
       fetchImages(nextImageName, page)
         .then(data => data.hits)
         .then(images => this.setState({ images, status: 'resolved' }))
@@ -40,7 +44,6 @@ class Gallery extends Component {
         .catch(error => this.setState({ error, status: 'rejected' }));
     }
   }
-
   onClickImage = event => {
     const { images } = this.state;
     const findImage = images.find(
@@ -60,6 +63,7 @@ class Gallery extends Component {
       showModal: !showModal,
     }));
   };
+
   render() {
     const { images, error, status, showModal, lageImage } = this.state;
     if (status === 'idle') {
@@ -101,6 +105,7 @@ class Gallery extends Component {
     }
   }
 }
+
 export default Gallery;
 
 Gallery.propTypes = {

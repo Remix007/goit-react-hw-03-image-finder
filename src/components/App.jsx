@@ -9,9 +9,11 @@ class App extends Component {
   state = {
     imageName: '',
   };
+
   hendleFormSearchSubmit = imageName => {
     this.setState({ imageName });
   };
+
   render() {
     const { imageName } = this.state;
     return (
